@@ -30,7 +30,7 @@ p {
 
 body {
     background-attachment:inherit;
-    background-image: url(/img/wp.jpg);
+    background-image: url(./img/wp.jpg);
     position: relative;
     min-height: 100%;
     width: 100%;
