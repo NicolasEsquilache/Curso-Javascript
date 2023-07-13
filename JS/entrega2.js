@@ -5,28 +5,6 @@ let precioFinal = 0;
 let eleccion = 0;
 
 
-// CLASES
-
-//Constructor de productos que se usaria si el dueño de la 
-//tienda quisiera agregar nuevos
-class Producto {
-    marca;
-    modelo;
-    ancho;
-    alto;
-    rodado;
-    precio;
-
-    constructor(marca, modelo, ancho, alto, rodado, precio) {
-        this.marca = marca;
-        this.modelo = modelo;
-        this.ancho = ancho;
-        this.alto = alto;
-        this.rodado = rodado;
-        this.precio = precio;
-    }
-}
-
 // Constructor de cada item de la factura
 class ItemFactura {
     marca;
@@ -48,23 +26,13 @@ class ItemFactura {
     }
 }
 
-// PRODUCTOS
-const producto1 = new Producto('Pirelli', 'P7', 205, 55, 16, 63000);
-const producto2 = new Producto('Pirelli', 'P7', 195, 55, 15, 42000);
-const producto3 = new Producto('Goodyear', 'P1', 195, 55, 15, 31000);
-const producto4 = new Producto('Michelin', 'Primacy', 205, 55, 16, 82000);
-const producto5 = new Producto('Michelin', 'Primacy', 195, 55, 15, 59000)
-const producto6 = new Producto('Pirelli', 'P1', 195, 55, 15, 36000)
-const producto7 = new Producto('Goodyear', 'Assurance', 205, 55, 16, 97000)
-const producto8 = new Producto('Michelin', 'Primacy', 225, 35, 18, 115000)
-const producto9 = new Producto('Pirelli', 'P1', 205, 55, 16, 42000)
-const producto10 = new Producto('Pirelli', 'P7', 225, 35, 18, 89000)
 
-const catalogo = [producto1, producto2, producto3, producto4, producto5, producto6, producto7, producto8, producto9, producto10];
+
+
 const catalogoString = catalogo.map((producto, index) => `
 ${index + 1} - ${producto.marca} - ${producto.modelo} - ${producto.ancho}/${producto.alto}/${producto.rodado}:  $${producto.precio}.`);
 
-const carrito = [];
+let carrito = [];
 
 function compra() {
     eleccion = parseInt(prompt('Elija una cubierta de la lista:\n' + catalogoString.join('')));

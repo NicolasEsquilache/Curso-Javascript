@@ -1,4 +1,296 @@
-body{
-    background-image: url(./Img/colibri.jpg);
-    background-size: cover;
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    height: 100%;
+}
+
+h1 {
+    font-weight: 700;
+    font-size: 4rem;
+    margin: 0px 0;
+    text-align: center;
+    background-color: red;
+    color: beige;
+
+}
+h2{
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: beige;
+}
+
+p {
+    font-size: 1.8rem;
+    line-height: 2.7rem;
+    margin: 0;
+}
+
+body {
+    background-attachment:inherit;
+    background-image: url(/img/wp.jpg);
+    position: relative;
+    min-height: 100%;
+    width: 100%;
+}
+
+main {
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-bottom: 50px;
+    display: flex;
+    flex: row;
+    justify-content: space-between;
+}
+
+th {
+    display: table-cell;
+    vertical-align:middle;
+    justify-content: center;
+    font-weight: bold;
+    text-align: left;
+    font-size: 1.5rem;
+}
+
+td {
+    display: table-cell;
+    vertical-align:middle;
+    text-align: left;
+}
+
+.tarjeta{
+    display:flex;
+    justify-content: center;
+}
+.navegador {
+    padding: 0;
+    position: sticky;
+    top: -1px;
+    background-color: #eb5e28;
+    z-index: 100;
+}
+
+.lista-nav {
+    margin: 0;
+    list-style: none;
+    justify-content: space-evenly;
+    width: 60%;
+    margin-right: auto;
+    margin-bottom: 10px;
+}
+
+.lista-nav li {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+}
+
+
+.grilla {
+    width: 100%;
+    display: grid;
+    grid-gap: 20px 20px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.producto {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    width: 240px;
+    background-color: rgba(145, 145, 145, 0.5019607843);
+    box-shadow: 0 4px 8px 0 rgba(30, 30, 30, 0.2), 0 6px 20px 0 rgba(30, 30, 30, 0.2);
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    z-index: 0;
+}
+.producto img {
+    width: 200px;
+    border-radius: 10px;
+}
+.producto .info-producto {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    flex: 1;
+}
+.producto .info-producto figcaption {
+    height: 100%;
+    font-size: 1.4rem;
+    line-height: 3rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+}
+
+.producto .info-producto figcaption p{
+    font-size: 1.8rem;
+    margin-bottom: 0;
+}
+
+.producto .info-producto p {
+    width: 200px;
+    margin: 10px 0px 20px 0px;
+}
+.producto .info-producto button {
+    font-size: 1.4rem;
+    line-height: 2rem;
+    border-radius: 5px;
+    padding: 7.5px 15px;
+    border: none;
+    background-color: #1b3039;
+    color: #fffcf4;
+    cursor: pointer;
+}
+.producto .info-producto button:active {
+    background-color: #2b4d5b;
+    transform: scale(0.97);
+}
+
+.producto button:hover {
+    background-color: #2b4d5b;
+}
+
+
+
+
+.ticketCarrito{
+    width: 300px;
+    margin-top: 128px;
+    position: sticky;
+    top: 70px;
+    right: 0px;
+}
+.ticketCarrito table{
+    margin-bottom: 0;
+}
+
+.ticketCarrito p{
+    display: flex;
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+}
+
+.borrarCarrito{
+    margin-top: 0;
+    font-size: 1.8rem;
+    line-height: 1.3rem;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 7.5px 15px;
+    border: none;
+    background-color: #1b3039;
+    color: #fffcf4;
+    cursor: pointer;
+}
+.borrarCarrito:active {
+    background-color: #2b4d5b;
+    transform: scale(0.97);
+}
+
+.borrarCarrito:hover {
+    background-color: #2b4d5b;
+}
+
+.cantidadCol{
+    width: 20px;
+}
+
+.productoCol{
+    width: 57%;
+}
+
+.subtotalCol{
+    width: 23%;
+}
+
+.celdaCantidad{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.tdCantidad{
+    border-left: 1px solid rgba(27, 48, 57, .3);
+    border-right: 1px solid rgba(27, 48, 57, .3);
+}
+
+.celdaCantidad button{
+    font-size: 1rem;
+    line-height: 1.5rem;
+    border-radius: 5px;
+    width: 20px;
+    height: 20px;
+    border: none;
+    background-color: #1b3039;
+    color: #fffcf4;
+    cursor: pointer;
+}
+.celdaCantidad button:active {
+    background-color: #2b4d5b;
+    transform: scale(0.97);
+}
+
+.celdaCantidad button:hover {
+    background-color: #2b4d5b;
+}
+
+.totalTexto{
+    text-align: right;
+    font-size: 1.3rem;
+}
+
+.ticketCarrito table .filaTotal td{
+    background-color: rgb(194, 194, 194);
+    color: color;
+    text-align: right;
+}
+
+.filaTotal th{
+    background-color: rgb(194, 194, 194);
+    color: black;
+}
+
+.precioColumna{
+    text-align: right;
+    font-size: 1.2rem;
+}
+
+.itemEnTabla{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+.imgCarrito{
+    width: 40px;
+    border-radius: 5px;
+}
+
+.cantidadTicket{
+    margin:0;
+    margin: 0 5px;
+}
+
+.nombreEnTabla{
+    margin-left: 10px;
+    font-size: 1.8rem;
+}
+
+.ticketCarrito table .headTabla{
+    background-color: #1b3039;
+    color: white;
 }
