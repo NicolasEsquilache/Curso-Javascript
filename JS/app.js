@@ -38,7 +38,7 @@ function start() {
 
 function traerCarrito() {
     carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-    //mostrarCarrito();
+    mostrarCarrito();
 }
 
 function mostrarCatalogo() {
@@ -72,6 +72,16 @@ function tarjeta(producto, seccion) {
 function agregarCarrito(eleccion) {
     //console.log(eleccion);
     let indice = carrito.findIndex((el) => el.modelo === eleccion.modelo && el.rodado === eleccion.rodado);
+    Toastify({
+        text: "Producto agregado exitosamente",        
+        duration: 2500,
+        close: true,
+        stopOnFocus: false,
+        gravity: 'bottom',
+        style: {
+            background: "linear-gradient(to right, #00AA00, #005500)",
+          },
+        }).showToast();
     //console.log(indice);
     if (indice !== -1) {
         carrito[indice].cantidad++;
@@ -116,7 +126,24 @@ function mostrarCarrito() {
     botonLimpiar.className = 'borrarCarrito';
     botonLimpiar.innerText = 'Borrar';
     tabla.appendChild(botonLimpiar);
-    botonLimpiar.addEventListener('click', () => { limpiarCarrito() })
+    botonLimpiar.addEventListener('click', () => { 
+        if(carrito.length!==0)
+        {
+        Swal.fire({
+            title: 'Está seguro de eliminar todos los productos?',
+            icon: 'warning' ,
+            showCancelButton: true,
+            confirmButtonText: 'Borrar',
+            denyButtonText: `Cancelar`,
+          }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+              Swal.fire('Carrito eliminado!', '', 'success')
+              limpiarCarrito()
+            } 
+          })
+        }
+     })
 }
 
 function filaTabla(producto, tabla) {
@@ -167,6 +194,7 @@ function decrementarProducto(eleccion) {
     mostrarCarrito();
 }
 
+addEventListener
 
 
 
