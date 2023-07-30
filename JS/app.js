@@ -134,6 +134,7 @@ function mostrarCarrito() {
             icon: 'warning' ,
             showCancelButton: true,
             confirmButtonText: 'Borrar',
+            confirmButtonColor:'#FF0000',
             denyButtonText: `Cancelar`,
           }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
@@ -190,12 +191,37 @@ function decrementarProducto(eleccion) {
     } else {
         carrito[indice].cantidad--;
     }
+    Toastify({
+        text: "Producto eliminado exitosamente",        
+        duration: 2500,
+        close: true,
+        stopOnFocus: false,
+        gravity: 'bottom',
+        style: {
+            background: "linear-gradient(to right, #AA0000, #550000)",
+          },
+        }).showToast();
     carritoAlStorage();
     mostrarCarrito();
 }
 
-addEventListener
+const newsletter=document.getElementById('btnRegistro');
 
+newsletter.addEventListener('click', async () => {
+    const { value: email } = await Swal.fire({
+        title: 'Ingrese su correo',
+        input: 'email',
+        inputPlaceholder: 'usuario@ejemplo.com'
+      })
+      
+      if (email) {
+        Swal.fire({
+            icon: 'success',
+            title: 'Felicitaciones!',
+            text: 'Usted ahora recibirá nuestras mejores ofertas a su correo electrónico.',
+          })
+      }
+});
 
 
 start()
