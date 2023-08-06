@@ -1,0 +1,122 @@
+[
+{
+    "marca": "Pirelli",
+    "modelo": "P7",
+    "ancho": 205,
+    "alto": 55,
+    "rodado": 16,
+    "precio": 63000,
+    "imagen": "P7.png",
+    "alternativo":"Imagen de la cubierta"
+},
+{
+    "marca": "Pirelli",
+    "modelo": "P7",
+    "ancho": 195,
+    "alto": 55,
+    "rodado": 15,
+    "precio": 45000,
+    "imagen": "P7.png",
+    "alternativo":"Imagen de la cubierta"
+},
+{
+    "marca": "Goodyear",
+    "modelo": "Assurance",
+    "ancho": 195,
+    "alto": 55,
+    "rodado": 14,
+    "precio": 31000,
+    "imagen": "Assurance.png",
+    "alternativo":"Imagen de la cubierta"
+},
+{
+    "marca": "Michelin",
+    "modelo": "Primacy",
+    "ancho": 205,
+    "alto": 55,
+    "rodado": 16,
+    "precio": 82000,
+    "imagen": "Primacy.png",
+    "alternativo":"Imagen de la cubierta"
+},
+{
+    "marca": "Michelin",
+    "modelo": "Primacy",
+    "ancho": 195,
+    "alto": 55,
+    "rodado": 15,
+    "precio": 59000,
+    "imagen": "Primacy.png",
+    "alternativo":"Imagen de la cubierta"
+},
+{
+    "marca": "Pirelli",
+    "modelo": "P1",
+    "ancho": 195,
+    "alto": 55,
+    "rodado": 15,
+    "precio": 36000,
+    "imagen": "P1.png",
+    "alternativo":"Imagen de la cubierta"
+},
+{
+    "marca": "Goodyear",
+    "modelo": "Assurance",
+    "ancho": 205,
+    "alto": 55,
+    "rodado": 16,
+    "precio": 97000,
+    "imagen": "Assurance.png",
+    "alternativo":"Imagen de la cubierta"
+},
+{
+    "marca": "Michelin",
+    "modelo": "Primacy",
+    "ancho": 225,
+    "alto": 35,
+    "rodado": 18,
+    "precio": 115000,
+    "imagen": "Primacy.png",
+    "alternativo":"Imagen de la cubierta"
+},
+{
+    "marca": "Pirelli",
+    "modelo": "P1",
+    "ancho": 205,
+    "alto": 55,
+    "rodado": 16,
+    "precio": 42000,
+    "imagen": "P1.png",
+    "alternativo":"Imagen de la cubierta"
+},
+{
+    "marca": "Goodyear",
+    "modelo": "Assurance",
+    "ancho": 225,
+    "alto": 35,
+    "rodado": 18,
+    "precio": 94000,
+    "imagen": "Assurance.png",
+    "alternativo":"Imagen de la cubierta"
+},
+{
+    "marca": "Pirelli",
+    "modelo": "P1",
+    "ancho": 185,
+    "alto": 65,
+    "rodado": 14,
+    "precio": 31000,
+    "imagen": "P1.png",
+    "alternativo":"Imagen de la cubierta"
+},
+{
+    "marca": "Pirelli",
+    "modelo": "P7",
+    "ancho": 225,
+    "alto": 35,
+    "rodado": 18,
+    "precio": 89000,
+    "imagen": "P7.png",
+    "alternativo":"Imagen de la cubierta"
+}
+]

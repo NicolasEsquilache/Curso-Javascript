@@ -1,6 +1,6 @@
 
-let subtotal = 0;
 let precioFinal = 0;
+let venta = '';
 
 
 
@@ -33,8 +33,36 @@ let carrito = [];
 function start() {
     document.addEventListener('DOMContentLoaded', traerCarrito);
     mostrarCatalogo();
+    divisas();
 }
 
+
+function divisas() {
+    let seccionDolar = document.getElementById("cotizacion");
+
+    fetch('https://api.bluelytics.com.ar/v2/latest?callback=nombre')
+        .then(response => {
+            if (response.ok) {
+                return response.json()
+            } else {
+                throw new Error('Hubo un error en el servidor: ' + response.status);
+            }
+        })
+        .then((todos) => {
+            venta = todos.blue.value_avg;
+            let p = document.createElement('p');
+            p.classList.add('divisa');
+
+            //console.log(todos.blue.value_sell);
+            p.innerHTML = `Tomamos dólares a : $${venta}`;
+            seccionDolar.appendChild(p);
+
+        })
+        .catch((error) => console.log(error));
+
+
+
+}
 
 function traerCarrito() {
     carrito = JSON.parse(localStorage.getItem("carrito")) || [];
@@ -44,9 +72,27 @@ function traerCarrito() {
 function mostrarCatalogo() {
     let seccionProductos = document.getElementById('grilla');
     seccionProductos.innerHTML = '';
-    catalogo.forEach((item) => {
-        tarjeta(item, seccionProductos);
-    });
+
+    fetch("JS/stock.json")
+        .then((response) => {
+            if (response.ok) {
+                return response.json(); ///convierto los objetos de json a javascript
+            } else {
+                console.log('Hubo un error en la solicitud: ', response.status);
+                throw new Error('Hubo un error en la solicitud');
+            }
+        })
+        .then((stock) => {
+            ///aca es donde dibujo las cards con cada uno de los platos
+            console.log(stock);
+            stock.forEach((item) => {
+                tarjeta(item, seccionProductos);
+            });
+        })
+        .catch((error) => console.log(error));
+
+
+
 }
 
 function tarjeta(producto, seccion) {
@@ -73,15 +119,15 @@ function agregarCarrito(eleccion) {
     //console.log(eleccion);
     let indice = carrito.findIndex((el) => el.modelo === eleccion.modelo && el.rodado === eleccion.rodado);
     Toastify({
-        text: "Producto agregado exitosamente",        
+        text: "Producto agregado exitosamente",
         duration: 2500,
         close: true,
         stopOnFocus: false,
         gravity: 'bottom',
         style: {
             background: "linear-gradient(to right, #00AA00, #005500)",
-          },
-        }).showToast();
+        },
+    }).showToast();
     //console.log(indice);
     if (indice !== -1) {
         carrito[indice].cantidad++;
@@ -117,7 +163,8 @@ function mostrarCarrito() {
 
     let tdTotal = document.createElement('td');
     tdTotal.classList.add('precioColumna')
-    tdTotal.innerHTML = `$ ${(carrito.reduce((total, producto) => total + (producto.precio * producto.cantidad), 0)).toLocaleString()}`;
+    precioFinal = (carrito.reduce((total, producto) => total + (producto.precio * producto.cantidad), 0))
+    tdTotal.innerHTML = `$ ${precioFinal}`;
     filaTotal.appendChild(tdTotal);
 
     tabla.appendChild(filaTotal);
@@ -126,25 +173,67 @@ function mostrarCarrito() {
     botonLimpiar.className = 'borrarCarrito';
     botonLimpiar.innerText = 'Borrar';
     tabla.appendChild(botonLimpiar);
-    botonLimpiar.addEventListener('click', () => { 
-        if(carrito.length!==0)
-        {
-        Swal.fire({
-            title: 'Está seguro de eliminar todos los productos?',
-            icon: 'warning' ,
-            showCancelButton: true,
-            confirmButtonText: 'Borrar',
-            confirmButtonColor:'#FF0000',
-            denyButtonText: `Cancelar`,
-          }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
-            if (result.isConfirmed) {
-              Swal.fire('Carrito eliminado!', '', 'success')
-              limpiarCarrito()
-            } 
-          })
+    botonLimpiar.addEventListener('click', () => {
+        if (carrito.length !== 0) {
+            Swal.fire({
+                title: 'Está seguro de eliminar todos los productos?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Borrar',
+                confirmButtonColor: '#FF0000',
+                denyButtonText: `Cancelar`,
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    Swal.fire('Carrito eliminado!', '', 'success')
+                    limpiarCarrito()
+                }
+            })
         }
-     })
+        else{
+            Swal.fire({
+                icon: 'error',
+                title: 'Carrito vacío',
+                text: 'Debe tener al menos un item en el carrito',
+              })
+        }
+    })
+
+    let botonComprar = document.createElement('button');
+    botonComprar.className = 'comprarCarrito';
+    botonComprar.innerText = 'Comprar';
+    tabla.appendChild(botonComprar);
+    botonComprar.addEventListener('click', () => {
+        if (carrito.length !== 0) {
+            Swal.fire({
+                title: 'Desea finalizar la compra?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Comprar',
+                confirmButtonColor: '#009900',
+                denyButtonText: `Cancelar`,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    let dolares = (precioFinal / venta).toFixed(2);
+                    Swal.fire('Compra efectuada', `Usted debe abonar $${precioFinal} pesos o $${dolares} dólares `, 'success')
+                    console.log("dolares", dolares);
+                    console.log("valor usd", venta);
+                    console.log("precio final", precioFinal);
+
+                    limpiarCarrito()
+                }
+            })
+        }
+        else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Carrito vacío',
+                text: 'Debe tener al menos un item en el carrito',
+              })
+        }//aca si no hay  nada comprado
+    })
+
+    //aca boton comprar
 }
 
 function filaTabla(producto, tabla) {
@@ -192,35 +281,35 @@ function decrementarProducto(eleccion) {
         carrito[indice].cantidad--;
     }
     Toastify({
-        text: "Producto eliminado exitosamente",        
+        text: "Producto eliminado exitosamente",
         duration: 2500,
         close: true,
         stopOnFocus: false,
         gravity: 'bottom',
         style: {
             background: "linear-gradient(to right, #AA0000, #550000)",
-          },
-        }).showToast();
+        },
+    }).showToast();
     carritoAlStorage();
     mostrarCarrito();
 }
 
-const newsletter=document.getElementById('btnRegistro');
+const newsletter = document.getElementById('btnRegistro');
 
 newsletter.addEventListener('click', async () => {
     const { value: email } = await Swal.fire({
         title: 'Ingrese su correo',
         input: 'email',
         inputPlaceholder: 'usuario@ejemplo.com'
-      })
-      
-      if (email) {
+    })
+
+    if (email) {
         Swal.fire({
             icon: 'success',
             title: 'Felicitaciones!',
             text: 'Usted ahora recibirá nuestras mejores ofertas a su correo electrónico.',
-          })
-      }
+        })
+    }
 });
 
 

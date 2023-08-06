@@ -12,7 +12,7 @@ h1 {
     font-size: 4rem;
     margin: 0px 0;
     text-align: center;
-    background-color: red;
+    background-color: #0a4275;
     color: beige;
 
 }
@@ -295,3 +295,27 @@ td {
     color: white;
 }
 
+.divisa{
+    color: #eb5e28;
+
+}
+.comprarCarrito{
+    margin-top: 0;
+    font-size: 1.8rem;
+    line-height: 1.3rem;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 7.5px 15px;
+    border: none;
+    background-color: #1b3039;
+    color: #fffcf4;
+    cursor: pointer;
+}
+.comprarCarrito:active {
+    background-color: #2b4d5b;
+    transform: scale(0.97);
+}
+
+.comprarCarrito:hover {
+    background-color: #2b4d5b;
+}
